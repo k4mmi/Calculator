@@ -33,25 +33,37 @@ let count = ""
 // Function for show result on display
 function result() {
     try {
-        let finalResult = eval(count)
-        document.getElementById("output").innerHTML = finalResult
-        
-        // Show on calculator display
-        document.getElementById("input").innerHTML = editText(count)
-        return count = finalResult
+        if (count == "") {
+            document.getElementById("input").innerHTML = ""
+        } else if (eval(count) == Infinity) {
+            // clear mistake
+            clearAll()
+            document.getElementById("input").innerHTML = ""
+            // display error
+            document.getElementById("output").innerHTML = "Error"
+        } else {
+            let finalResult = eval(count)
+            document.getElementById("output").innerHTML = finalResult
+            
+            // Show on calculator display
+            document.getElementById("input").innerHTML = editText(count)
+            return count = finalResult
+        }
     } catch {
         // clear mistake
         clearAll()
         document.getElementById("input").innerHTML = ""
         // display error
-        document.getElementById("output").innerHTML = "Error :("
+        document.getElementById("output").innerHTML = "Error"
     }
 }
 
 // Clear display - AC btn
 function clearAll() {
     count = ""
-    document.getElementById("output").innerHTML = "", bracketStatus = null
+    document.getElementById("output").innerHTML = ""  
+    document.getElementById("input").innerHTML = "" 
+    bracketStatus = null
     return count
 }
 
