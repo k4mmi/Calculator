@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cz-cs">
+<head>
+    <!-- ^w^ -->
+    <meta charset="UTF-8">
+    <link rel="icon" href="images/favicon/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <title>Kalkulačka</title>
+</head>
+<body>
+    <!-- Calculator -->
+    <div id="container">
+        <!-- Display of calculator -->
+        <div class="display">
+                <div class="top-menu">
+                    <button class="btn-circle btn" onclick="console.log('im not workin hehe')">
+                        <img src="images/icons/more_vert.svg" alt="More" height="32px">
+                    </button>
+                    <!-- <button class="btn-circle btn">
+                        <img src="images/icons/history.svg" alt="History" height="32px">
+                    </button> -->
+                </div>
+                <div class="counting">
+                    <div id="output" class="output"></div>
+                    <div id="input" class="input"></div>
+                </div>
+                <div id="moreBtn" class="more-btn">
+                    <button class="btn" onclick="moreBtn()"><img id="moreBtnImage" src="images/icons/more-closed.svg" alt="More" width="72px"></button>
+                </div>
+        </div>
+        <!-- All btns -->
+        <div class="calculator-btns">
+            <!-- Additional btns -->
+            <div id="calculatorAdditional" class="calculator-additional" style="display: none;">
+                --- test :3 ---
+            </div>
+            <!-- Main btns -->
+            <div class="calculator-main">
+                <!-- Rows with btns -->
+                <div class="row">
+                    <button id="acBtn" class="btn btn-main" onclick="clearAll()">AC</button>
+                    <button id="bracketsBtn" class="btn btn-main" onclick="brackets()">( )</button>
+                    <button id="deleteBtn" class="btn btn-main" onclick="del()"><img src="images/icons/delete.svg" alt="DEL" width="36px"></button>
+                    <button id="divideBtn" class="btn btn-main" onclick="counting('/')">÷</button>
+                </div>
+                <div class="row">
+                    <button id="sevenBtn" class="btn btn-main" onclick="counting(7)">7</button>
+                    <button id="eightBtn" class="btn btn-main" onclick="counting(8)">8</button>
+                    <button id="nineBtn" class="btn btn-main" onclick="counting(9)">9</button>
+                    <button id="multiplyBtn" class="btn btn-main" onclick="counting('*')">×</button>
+                </div>
+                <div class="row">
+                    <button id="fourBtn" class="btn btn-main" onclick="counting(4)">4</button>
+                    <button id="fiveBtn" class="btn btn-main" onclick="counting(5)">5</button>
+                    <button id="sixBtn" class="btn btn-main" onclick="counting(6)">6</button>
+                    <button id="subtractBtn" class="btn btn-main" onclick="counting('-')">–</button>
+                </div>
+                <div class="row">
+                    <button id="oneBtn" class="btn btn-main" onclick="counting(1)">1</button>
+                    <button id="twoBtn" class="btn btn-main" onclick="counting(2)">2</button>
+                    <button id="threeBtn" class="btn btn-main" onclick="counting(3)">3</button>
+                    <button id="plusBtn" class="btn btn-main" onclick="counting('+')">+</button>
+                </div>
+                <div class="row">
+                    <!-- Wide btn -->
+                    <button id="zeroBtn" class="btn btn-main wide-btn" onclick="counting(0)">0</button>
+                    <button id="commaBtn" class="btn btn-main" onclick="counting('.')">,</button>
+                    <button id="resultBtn" class="btn btn-main" onclick="result()">=</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+     <script src="script.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
+</body>
+</html>

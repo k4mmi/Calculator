@@ -1,0 +1,198 @@
+/* Anti-flashbang */
+
+body {
+    background: #000; /* delete me in future pls*/
+    background: #c7c7c7;
+}
+
+/* Reset and default settings */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--whiteColor);
+    font-family: var(--defaultFont);
+}
+
+/* Variables */
+
+:root {
+    /* Colors */
+    --darkColor: #162C1C;
+    --neutralColor: #1F3C27;
+    --lightColor: #224A2D;
+    --whiteColor: #fff;
+
+    /* Rounded corners */
+    --moreRounded: 33px;
+    --lessRounded: 10px;
+
+    /* Font */
+    --defaultFont: Ubuntu;
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(fonts/Ubuntu-Regular.ttf);
+}
+
+/* Testing stuff */
+
+.test {
+    color: #0FF;
+    background: #F0F;
+}
+
+/* Body */
+
+body { 
+    margin: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Container */
+    
+#container {
+    display: flex;
+    width: 360px;
+    height: 712px;
+    border-radius: 15px;
+    background: var(--neutralColor);
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px #00000041;
+}
+
+.display {
+    background: var(--darkColor);
+    height: max-content;
+    max-height: 272px;
+    width: 100%;
+}
+
+/* Calculator */
+
+.calculator-btns {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+}
+
+/* Contains additional btns */
+
+.calculator-additional {
+    height: 98px;
+    width: 100%;
+    background-color: #f33;
+}
+
+/* Contains all basic btns for calculators */
+
+.calculator-main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    height: 100%;
+}
+
+.calculator-main .btn {
+    width: 80px;
+    font-size: 34px;
+    border-radius: var(--moreRounded) var(--lessRounded) var(--moreRounded) var(--lessRounded);
+    background-color: var(--lightColor);
+    height: 100%;
+}
+
+.calculator-main .wide-btn {
+    width: 168px;
+}
+
+/* All btns */
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Btn - active */
+
+.calculator-main .btn:active {
+    background: var(--neutralColor);
+}
+
+/* Display */
+
+.display {
+    border-radius: 0 0 var(--moreRounded) 0;
+    padding: 11px 11px 0 11px;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+/* Top menu */
+
+.top-menu {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+/* Circle around btn */
+
+.btn-circle {
+    border-radius: 100%;
+    padding: 3px;
+}
+
+/* Change color of background of btn circles */
+
+.btn-circle:active {
+    background: var(--lightColor);
+}
+
+/* "Three leaves", for show more options */
+
+.more-btn {
+    display: flex;
+    justify-content: center;
+}
+
+/* Showed numbers/Counting */
+
+.counting {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: 176px;
+    flex-direction: column-reverse;
+    text-align: right;
+}
+
+/* Counting output*/
+
+.output {
+    font-size: 82px;
+}
+
+/* Counting input */
+
+.input {
+    font-size: 32px;
+    margin-right: 5px;
+}
