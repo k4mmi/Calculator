@@ -1,7 +1,5 @@
-/* Anti-flashbang */
-
 body {
-    background: #000; /* delete me in future pls*/
+    background: #000; /* delete me in future pls, I'm Anti-flashbang for coding at night */
     background: #c7c7c7;
 }
 
@@ -14,12 +12,15 @@ body {
     background: none;
     color: var(--whiteColor);
     font-family: var(--defaultFont);
+    transition: 30ms;
+    z-index: 1;
 }
 
 /* Variables */
 
 :root {
     /* Colors */
+    --darkTranslucentColor: #0c160f80;
     --darkColor: #162C1C;
     --neutralColor: #1F3C27;
     --lightColor: #224A2D;
@@ -31,6 +32,9 @@ body {
 
     /* Font */
     --defaultFont: Ubuntu;
+
+    /* Blur */
+    --blur: blur(10px);
 }
 
 /* Fonts */
@@ -66,6 +70,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 5px 5px 10px #00000041;
+    position: relative;
 }
 
 .display {
@@ -90,34 +95,50 @@ body {
 .calculator-additional {
     height: 98px;
     width: 100%;
-    background-color: #f33;
 }
 
 /* Contains all basic btns for calculators */
+
+.calculator-additional {
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+}
 
 .calculator-main {
     display: flex;
     flex-direction: column;
     gap: 8px;
     height: 100%;
+}    
+
+.row-additional {
+    display: flex;
+    height: 33%;
 }
 
-.row {
+.row-main {
     display: flex;
-    flex-direction: row;
     gap: 8px;
     height: 100%;
 }
 
-.calculator-main .btn {
+.btn-additional {
+    height: 100%;
+    width: 25%;
+    font-size: 20px;
+    border-radius: var(--lessRounded);
+}
+
+.btn-main {
     width: 80px;
-    font-size: 34px;
+    font-size: 42px;
     border-radius: var(--moreRounded) var(--lessRounded) var(--moreRounded) var(--lessRounded);
     background-color: var(--lightColor);
     height: 100%;
 }
 
-.calculator-main .wide-btn {
+.wide-btn {
     width: 168px;
 }
 
@@ -130,6 +151,10 @@ body {
 }
 
 /* Btn - active */
+
+.calculator-additional .btn:active {
+    background: var(--lightColor);
+}
 
 .calculator-main .btn:active {
     background: var(--neutralColor);
@@ -195,4 +220,22 @@ body {
 .input {
     font-size: 32px;
     margin-right: 5px;
+}
+
+/* Menu */
+
+#menu {
+    position: absolute;
+    top: 34px;
+    left: 38px;
+    background: var(--darkTranslucentColor);
+    backdrop-filter: var(--blur);
+    padding: 20px 30px 20px 12px;
+    border-radius: var(--lessRounded) var(--moreRounded) var(--lessRounded) var(--moreRounded);
+    z-index: 2;
+}
+
+.menu-btn {
+    font-size: 16px;
+    padding-bottom: 10px;
 }

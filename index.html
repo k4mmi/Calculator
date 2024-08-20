@@ -8,9 +8,15 @@
     <title>Kalkulačka</title>
 </head>
 <body>
+    <div style="z-index: 999; position: fixed; opacity: 0.25; margin: 10px; font-size: 17px; top: 0; color: #000;">This is alpha version, don't trust the results</div>
     <!-- Calculator -->
     <div id="container">
         <!-- Display of calculator -->
+        <!-- <div id="menu">
+            <button class="menu-btn">Nastaven</button>
+            <br>
+            <button class="menu-btn">O aplikaci</button>
+        </div> -->
         <div class="display">
                 <div class="top-menu">
                     <button class="btn-circle btn" onclick="console.log('im not workin hehe')">
@@ -31,37 +37,54 @@
         <!-- All btns -->
         <div class="calculator-btns">
             <!-- Additional btns -->
-            <div id="calculatorAdditional" class="calculator-additional" style="display: none;">
-                --- test :3 ---
+            <div id="calculatorAdditional" class="calculator-additional" style="display: none">
+                <div class="row-additional">
+                    <button id="" class="btn btn-additional" onclick="">sin</button>
+                    <button id="" class="btn btn-additional" onclick="">cos</button>
+                    <button id="" class="btn btn-additional" onclick="">tang</button>
+                    <button id="" class="btn btn-additional" onclick="">cotg</button>
+                </div>
+                <div class="row-additional">
+                    <button id="" class="btn btn-additional" onclick="">RAD</button>
+                    <button id="" class="btn btn-additional" onclick="">log</button>
+                    <button id="" class="btn btn-additional" onclick="counting('piReplace')">π</button>
+                    <button id="" class="btn btn-additional" onclick="">°</button>
+                </div>
+                <div class="row-additional">
+                    <button id="" class="btn btn-additional" onclick="">^</button>
+                    <button id="" class="btn btn-additional" onclick=""><img src="/images/icons/subtraction.svg" height="10px"></button>
+                    <button id="" class="btn btn-additional" onclick="counting('%')">%</button>
+                    <button id="" class="btn btn-additional" onclick="">!</button>
+                </div>
             </div>
             <!-- Main btns -->
             <div class="calculator-main">
                 <!-- Rows with btns -->
-                <div class="row">
+                <div class="row-main">
                     <button id="acBtn" class="btn btn-main" onclick="clearAll()">AC</button>
                     <button id="bracketsBtn" class="btn btn-main" onclick="brackets()">( )</button>
                     <button id="deleteBtn" class="btn btn-main" onclick="del()"><img src="images/icons/delete.svg" alt="DEL" width="36px"></button>
                     <button id="divideBtn" class="btn btn-main" onclick="counting('/')">÷</button>
                 </div>
-                <div class="row">
+                <div class="row-main">
                     <button id="sevenBtn" class="btn btn-main" onclick="counting(7)">7</button>
                     <button id="eightBtn" class="btn btn-main" onclick="counting(8)">8</button>
                     <button id="nineBtn" class="btn btn-main" onclick="counting(9)">9</button>
                     <button id="multiplyBtn" class="btn btn-main" onclick="counting('*')">×</button>
                 </div>
-                <div class="row">
+                <div class="row-main">
                     <button id="fourBtn" class="btn btn-main" onclick="counting(4)">4</button>
                     <button id="fiveBtn" class="btn btn-main" onclick="counting(5)">5</button>
                     <button id="sixBtn" class="btn btn-main" onclick="counting(6)">6</button>
                     <button id="subtractBtn" class="btn btn-main" onclick="counting('-')">–</button>
                 </div>
-                <div class="row">
+                <div class="row-main">
                     <button id="oneBtn" class="btn btn-main" onclick="counting(1)">1</button>
                     <button id="twoBtn" class="btn btn-main" onclick="counting(2)">2</button>
                     <button id="threeBtn" class="btn btn-main" onclick="counting(3)">3</button>
                     <button id="plusBtn" class="btn btn-main" onclick="counting('+')">+</button>
                 </div>
-                <div class="row">
+                <div class="row-main">
                     <!-- Wide btn -->
                     <button id="zeroBtn" class="btn btn-main wide-btn" onclick="counting(0)">0</button>
                     <button id="commaBtn" class="btn btn-main" onclick="counting('.')">,</button>
@@ -74,6 +97,5 @@
 
     <!-- Scripts -->
      <script src="script.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
 </body>
 </html>

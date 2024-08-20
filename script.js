@@ -15,8 +15,8 @@ function moreBtn() {
         // Mark that is it closed
         return moreBtnActive = false
     } else {
-        
         document.getElementById("calculatorAdditional").style.display = "block"
+
         // Change image of btn
         document.getElementById("moreBtnImage").src = "images/icons/more-opened.svg"
         
@@ -35,30 +35,37 @@ function result() {
     try {
         if (count == "") {
             document.getElementById("input").innerHTML = ""
-        } else if (eval(count) == Infinity) {
+        } else if (eval(count) == Infinity || eval(count) == undefined ) {
+
             // clear mistake
             clearAll()
             document.getElementById("input").innerHTML = ""
+
             // display error
             document.getElementById("output").innerHTML = "Error"
         } else {
-            let finalResult = eval(count)
-            document.getElementById("output").innerHTML = finalResult
-            
+            let finalResult = Math.round(eval(count) * 100)/100    
+
             // Show on calculator display
+            document.getElementById("output").innerHTML = editText(String(finalResult))
             document.getElementById("input").innerHTML = editText(count)
+
+            // Final result to 
             return count = finalResult
         }
     } catch {
+
         // clear mistake
         clearAll()
         document.getElementById("input").innerHTML = ""
+
         // display error
         document.getElementById("output").innerHTML = "Error"
     }
 }
 
 // Clear display - AC btn
+
 function clearAll() {
     count = ""
     document.getElementById("output").innerHTML = ""  
@@ -68,6 +75,7 @@ function clearAll() {
 }
 
 // Just backspace
+
 function del() {
     return count = count.substring(0, count.length - 1), inputDisplay(count)
 }
@@ -86,8 +94,16 @@ function brackets() {
 
 // COUNTING /////////////////////////////////////////////////////////
 
-function counting(imput) {
-    return count = (count + String(imput)), inputDisplay(count)
+function counting(input) {
+
+    // Input to string
+    input = String(input)
+
+    // Filter
+    input = input.replace(/piReplace/g, "3.14")
+    
+    // Add symbol
+    return count = (count + String(input)), inputDisplay(count)
 }
 
 // DISPLAY /////////////////////////////////////////////////////////
