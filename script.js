@@ -1,5 +1,13 @@
+// Version
+let version = "v0.3.0-alpha"
+
+// Version display in about
+document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
+
+// Info
+document.getElementById("info").innerHTML = "This is alpha version, do not trust the results.<br>" + version
+
 // MORE BTN /////////////////////////////////////////////////////////
-// Open more buttons
 
 //For chacking if is more it opened
 let moreBtnActive = false
@@ -8,16 +16,16 @@ let moreBtnActive = false
 function moreBtn() {
     if (moreBtnActive === true){
         document.getElementById("calculatorAdditional").style.display = "none"
-
+        
         // Change image of btn
         document.getElementById("moreBtnImage").src = "images/icons/more-closed.svg"
-
+        
         // Mark that is it closed
         return moreBtnActive = false
     } else {
         document.getElementById("calculatorAdditional").style.display = "block"
-
-        // Change image of btn
+        
+    // Change image of btn
         document.getElementById("moreBtnImage").src = "images/icons/more-opened.svg"
         
         // Mark that is it closed
@@ -25,8 +33,46 @@ function moreBtn() {
     }
 }
 
-// BTNs /////////////////////////////////////////////////////////
+// MENU POPUP /////////////////////////////////////////////////////////
+let menuPopupActive = false
 
+function menu(){
+    if (menuPopupActive === true){
+        document.getElementById("menu").style.display = "none"
+        
+        // Mark that is it closed
+        return menuPopupActive = false
+    } else {
+        document.getElementById("menu").style.display = "block"
+        
+        // Mark that is it closed
+        return menuPopupActive = true
+    }
+}
+
+// Open window
+function bluredWindow(){
+    document.getElementById("window").style.display = "block"
+}
+
+// Open settings
+function settings(){
+    document.getElementById("settings").style.display = "block"
+}
+
+// Open about
+function about(){
+    document.getElementById("about").style.display = "block"
+}
+
+// Close window
+function closeWindow() {
+    document.getElementById("about").style.display = "none"
+    document.getElementById("settings").style.display = "none"
+    document.getElementById("window").style.display = "none"
+}
+
+// BTNs /////////////////////////////////////////////////////////
 // user imput to be caunted, default is empty string
 let count = ""
 
@@ -36,29 +82,30 @@ function result() {
         if (count == "") {
             document.getElementById("input").innerHTML = ""
         } else if (eval(count) == Infinity || eval(count) == undefined ) {
-
-            // clear mistake
+            
+            // Clear mistake
             clearAll()
             document.getElementById("input").innerHTML = ""
-
-            // display error
+            
+            // Display error
             document.getElementById("output").innerHTML = "Error"
         } else {
             let finalResult = Math.round(eval(count) * 100)/100    
-
+            
             // Show on calculator display
             document.getElementById("output").innerHTML = editText(String(finalResult))
             document.getElementById("input").innerHTML = editText(count)
-
+            document.getElementById("output").style.fontSize = "62px"
+            
             // Final result to 
-            return count = finalResult
+            return count = String(finalResult)
         }
     } catch {
-
+        
         // clear mistake
         clearAll()
         document.getElementById("input").innerHTML = ""
-
+        
         // display error
         document.getElementById("output").innerHTML = "Error"
     }
@@ -69,15 +116,19 @@ function result() {
 function clearAll() {
     count = ""
     document.getElementById("output").innerHTML = ""  
-    document.getElementById("input").innerHTML = "" 
+    document.getElementById("input").innerHTML = ""
     bracketStatus = null
-    return count
+    return count, fontSizeChanger()
 }
 
-// Just backspace
+// Just delete
 
 function del() {
-    return count = count.substring(0, count.length - 1), inputDisplay(count)
+    // Hide user's input from display (id="input" in index.html)
+    document.getElementById("input").innerHTML = editText("")
+
+    // Just delete
+    return count = count.substring(0, count.length - 1), fontSizeChanger(), inputDisplay(count)
 }
 
 // Choose correct brackets
@@ -95,15 +146,32 @@ function brackets() {
 // COUNTING /////////////////////////////////////////////////////////
 
 function counting(input) {
-
-    // Input to string
     input = String(input)
-
+    
     // Filter
     input = input.replace(/piReplace/g, "3.14")
     
-    // Add symbol
-    return count = (count + String(input)), inputDisplay(count)
+    // Add symbol, 
+    return count = (count + String(input)), inputDisplay(count),fontSizeChanger(), document.getElementById("input").innerHTML = "", eE() 
+}
+
+// Fix double signs. If user try new sign, a last one will be replaced the new one
+function signFix() {
+    // Save user sign input, because both signs will be deleted. saveLase gonna recover user output after deletion
+    let saveLast = count.slice(-1)
+
+    // Take last user input before this new one
+    let input = count.slice(-2)
+    input = input.substring(0, input.length - 1)
+    
+    // Checker
+    if (input == "*" || input == "-" || input == "+" || input == "/" || input == ".") {
+        // Delete both 
+        delFunction(2)
+        
+        // Recover deleted new user input (yes, ik this is bad solution, but... it't somehow workin', so...)
+        return count = (count + String(saveLast)), inputDisplay(count)
+    } else {}
 }
 
 // DISPLAY /////////////////////////////////////////////////////////
@@ -116,8 +184,49 @@ function inputDisplay(countDisplay) {
 
 // Editing displayed text, for example this changing "*" to "×" (it's look more usesr friendly)
 function editText(edit) {
+    // Filter
+    edit = edit.replace(/Math./g, "");
     edit = edit.replace(/\*/g, "×");
     edit = edit.replace(/\//g, "÷");
     edit = edit.replace(/\./g, ",");
     return edit
+}
+
+// FONT SIZE CHANGING /////////////////////////////////////////////////////////
+
+function fontSizeChanger() {
+    if (count.length <= 7) {
+        document.getElementById("output").style.fontSize = "82px"
+    } else if (count.length == 8) {
+        document.getElementById("output").style.fontSize = "70px"
+    } else if (count.length == 9) {
+        document.getElementById("output").style.fontSize = "62px"
+    } else if (count.length == 10) {
+        document.getElementById("output").style.fontSize = "56px"
+    } else if (count.length == 11) {
+        document.getElementById("output").style.fontSize = "52px"
+    } else if (count.length == 12) {
+        document.getElementById("output").style.fontSize = "47px"
+    } else if (count.length == 13) {
+        document.getElementById("output").style.fontSize = "45px"
+    } else if (count.length == 14) {
+        document.getElementById("output").style.fontSize = "42px"
+    } else {
+        console.log("if u read this, dont add more numbers, signs... pls, ty")
+        // ik weird function
+    }
+}
+
+// OTHER /////////////////////////////////////////////////////////
+
+// Delete, set mean how many last symbols will be deleted, default is 1
+function delFunction(set = 1) {
+    return count = count.substring(0, count.length - set), inputDisplay(count)
+}
+
+// Ignore pls, just easter egg
+function eE(){
+    if (count == "0.0") {
+        console.log("%caaaaaaaaaaaaaaaaa, my code is f**kin' broken, I'm not dev, I'm grafic designer, why I code this? f*ck", "color: #f0f")
+    } else {}
 }
