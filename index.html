@@ -8,7 +8,7 @@
     <title>Kalkulačka</title>
 </head>
 <body>
-    <div id="info" style="z-index: 999; position: fixed; opacity: 0.55; margin: 10px; font-size: 17px; top: 0; left: 0; color: #777;"></div>
+    <div id="info" style="z-index: 999; position: fixed; opacity: 0.4; margin: 10px; font-size: 17px; top: 0; left: 0; color: #8e8e8e;"></div>
     <!-- Calculator -->
     <div id="container">
         <div id="window" style="display: none">
@@ -19,15 +19,15 @@
             <div id="about" style="display: none">
                 <div class="h1-window">O aplikaci</div>
                 <div id="about-version" class="p-window"></div>
-                <div class="p-window">Odkazy: <a href="https://github.com/k4mmi/Calculator" target="_blank">Projekt na GitHub</a></div>
+                <div class="p-window">Odkazy: <a href="https://github.com/k4mmi/Calculator" target="_blank">Zdrojový kód (GitHub)</a></div>
             </div>
-            <div class="invis-btn" onclick="closeWindow()"></div> 
+            <button class="invis-btn" onclick="closeWindow()"></button> 
+            <div class="invis-btn-text">Zpět</div>
         </div>
         <!-- Display of calculator -->
         <div id="menu" style="display: none">
-            <button class="menu-btn" onclick="menu(), bluredWindow(), settings()">Nastavení</button>
-            <br>
-            <button class="menu-btn" onclick="menu(), bluredWindow(), about()">O aplikaci</button>
+            <button class="menu-btn btn" onclick="menu(), bluredWindow(), about()"><img src="images/icons/info.svg">O aplikaci</button>
+            <button class="menu-btn btn" onclick="menu(), bluredWindow(), settings()"><img src="images/icons/settings.svg">Nastavení</button>
         </div>
         <div class="display">
                 <div class="top-menu">
@@ -43,7 +43,7 @@
                     <div id="input" class="input"></div>
                 </div>
                 <div id="moreBtn" class="more-btn">
-                    <button class="btn" onclick="moreBtn()"><img id="moreBtnImage" src="images/icons/more-closed.svg" alt="More" width="72px"></button>
+                    <button class="btn" onclick="moreBtn()"><img id="moreBtnImage" src="images/icons/more-closed.svg" alt="More" width="42px"></button>
                 </div>
         </div>
         <!-- All btns -->
@@ -51,21 +51,21 @@
             <!-- Additional btns -->
             <div id="calculatorAdditional" class="calculator-additional" style="display: none">
                 <div class="row-additional">
-                    <button id="" class="btn btn-additional" onclick="counting('Math.sin('), bracketStatus = 'opened'">sin</button>
-                    <button id="" class="btn btn-additional" onclick="counting('Math.cos('), bracketStatus = 'opened'">cos</button>
-                    <button id="" class="btn btn-additional" onclick="counting('Math.tang('), bracketStatus = 'opened'">tang</button>
+                    <button id="sin" class="btn btn-additional" onclick="counting('Math.sin('), bracketStatus = 'opened'">sin</button>
+                    <button id="cos" class="btn btn-additional" onclick="counting('Math.cos('), bracketStatus = 'opened'">cos</button>
+                    <button id="tang" class="btn btn-additional" onclick="counting('Math.tan('), bracketStatus = 'opened'">tang</button>
                     <button id="" class="btn btn-additional incomplete" onclick="counting('')">cotg</button>
                 </div>
                 <div class="row-additional">
                     <button id="" class="btn btn-additional incomplete" onclick="">RAD</button>
                     <button id="" class="btn btn-additional incomplete" onclick="">log</button>
-                    <button id="" class="btn btn-additional" onclick="counting('piReplace')">π</button>
+                    <button id="pi" class="btn btn-additional" onclick="counting('π')">π</button>
                     <button id="" class="btn btn-additional incomplete" onclick="">°</button>
                 </div>
                 <div class="row-additional">
-                    <button id="" class="btn btn-additional incomplete" onclick="">^</button>
-                    <button id="" class="btn btn-additional incomplete" onclick=""><img src="images/icons/subtraction.svg" height="10px"></button>
-                    <button id="" class="btn btn-additional incomplete" onclick="counting('%')">%</button>
+                    <button id="" class="btn btn-additional incomplete" onclick="counting('Math.pow('), bracketStatus = 'opened'">^</button>
+                    <button id="" class="btn btn-additional incomplete" onclick="counting('Math.sqrt('), bracketStatus = 'opened'"><img src="images/icons/root.svg" height="10px"></button>
+                    <button id="percentage" class="btn btn-additional" onclick="counting('%')">%</button>
                     <button id="" class="btn btn-additional incomplete" onclick="">!</button>
                 </div>
             </div>

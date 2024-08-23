@@ -1,5 +1,5 @@
 // Version
-let version = "v0.3.0-alpha"
+let version = "v0.4.0-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
@@ -79,9 +79,14 @@ let count = ""
 // Function for show result on display
 function result() {
     try {
+        // Filter
+        count = count.replace(/%/g, "/100");
+        count = count.replace(/π/g, Math.PI);
+        
+        //Error checking
         if (count == "") {
             document.getElementById("input").innerHTML = ""
-        } else if (eval(count) == Infinity || eval(count) == undefined ) {
+        } else if (eval(count) == Infinity || eval(count) == undefined) {
             
             // Clear mistake
             clearAll()
@@ -90,6 +95,7 @@ function result() {
             // Display error
             document.getElementById("output").innerHTML = "Error"
         } else {
+            console.log(count)
             let finalResult = Math.round(eval(count) * 100)/100    
             
             // Show on calculator display
@@ -143,13 +149,16 @@ function brackets() {
     }
 }
 
+function factorial() {
+
+}
 // COUNTING /////////////////////////////////////////////////////////
 
 function counting(input) {
     input = String(input)
     
     // Filter
-    input = input.replace(/piReplace/g, "3.14")
+    // input = input.replace(/piReplace/g, "3.14")
     
     // Add symbol, 
     return count = (count + String(input)), inputDisplay(count),fontSizeChanger(), document.getElementById("input").innerHTML = "", eE() 
@@ -182,9 +191,10 @@ function inputDisplay(countDisplay) {
 
 // TEXT STYLE EDIT /////////////////////////////////////////////////////////
 
-// Editing displayed text, for example this changing "*" to "×" (it's look more usesr friendly)
+// Editing displayed text, for example this changing "*" to "×" (it's look more user friendly)
 function editText(edit) {
     // Filter
+    edit = edit.replace(/tan/g, "tang");
     edit = edit.replace(/Math./g, "");
     edit = edit.replace(/\*/g, "×");
     edit = edit.replace(/\//g, "÷");
@@ -215,6 +225,34 @@ function fontSizeChanger() {
         console.log("if u read this, dont add more numbers, signs... pls, ty")
         // ik weird function
     }
+}
+
+// KEY LISTENER /////////////////////////////////////////////////////////
+
+// Set key variable
+let key
+
+// Key listen
+document.addEventListener("keydown", function(event){key = event.key; keyInput()})
+
+// Keys run functions
+function keyInput() {
+    // console.log(key)
+
+    if ((key >= 0 && key != " ") || key == "%") {counting(key)}
+    else if(key == "/" || key == "*" || key == "-" || key == "+" || key == "," || key == ".") {counting(key); signFix()}
+    else if(key == "Enter" || key == "=") {result()}
+    else if(key == "s") {counting('Math.sin(')}
+    else if(key == "c") {counting('Math.cos(')}
+    else if(key == "t") {counting('Math.tan(')}
+    else if(key == ")") {brackets()}
+    else if(key == "(") {brackets()}
+    else if(key == "Delete") {clearAll()}
+    else if(key == "Backspace"){del()}
+    else if(key == "Escape"){closeWindow()}
+    else if(key == " ") {moreBtn()}
+    else if(key == "p") {counting('π')}
+    else {}
 }
 
 // OTHER /////////////////////////////////////////////////////////
