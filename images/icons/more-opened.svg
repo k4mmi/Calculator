@@ -1,26 +1,5 @@
-<svg width="216" height="104" viewBox="0 0 216 104" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_dd_9_492)">
-<rect x="4" width="208" height="96" fill="#162C1C"/>
-<path d="M48 45C48 32.8497 57.8497 23 70 23H77C78.6569 23 80 24.3431 80 26V33C80 45.1503 70.1503 55 58 55H51C49.3431 55 48 53.6569 48 52V45Z" fill="#EAF5F5"/>
-<path d="M90 63C90 50.8497 99.8497 41 112 41H119C120.657 41 122 42.3431 122 44V51C122 63.1503 112.15 73 100 73H93C91.3431 73 90 71.6569 90 70V63Z" fill="#EAF5F5"/>
-<path d="M136 45C136 32.8497 145.85 23 158 23H165C166.657 23 168 24.3431 168 26V33C168 45.1503 158.15 55 146 55H139C137.343 55 136 53.6569 136 52V45Z" fill="#EAF5F5"/>
-</g>
-<defs>
-<filter id="filter0_dd_9_492" x="0" y="0" width="216" height="104" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_492"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="effect1_dropShadow_9_492" result="effect2_dropShadow_9_492"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_9_492" result="shape"/>
-</filter>
-</defs>
+<svg width="120" height="50" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 22C0 9.84974 9.84974 0 22 0H29C30.6569 0 32 1.34315 32 3V10C32 22.1503 22.1503 32 10 32H3C1.34315 32 0 30.6569 0 29V22Z" fill="#EAF5F5"/>
+<path d="M42 40C42 27.8497 51.8497 18 64 18H71C72.6569 18 74 19.3431 74 21V28C74 40.1503 64.1503 50 52 50H45C43.3431 50 42 48.6569 42 47V40Z" fill="#EAF5F5"/>
+<path d="M88 22C88 9.84974 97.8497 0 110 0H117C118.657 0 120 1.34315 120 3V10C120 22.1503 110.15 32 98 32H91C89.3431 32 88 30.6569 88 29V22Z" fill="#EAF5F5"/>
 </svg>
