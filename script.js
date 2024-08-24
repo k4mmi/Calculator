@@ -1,5 +1,5 @@
 // Version
-let version = "v0.4.0-alpha"
+let version = "v0.4.1-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
