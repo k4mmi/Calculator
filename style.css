@@ -9,7 +9,11 @@
     font-family: var(--defaultFont);
     transition: 30ms;
     z-index: 1;
-}
+
+    /* Hide scrollbar */
+    -ms-overflow-style: none;  /* Edge */
+    scrollbar-width: none;  /* Firefox */}
+*::-webkit-scrollbar {display: none;} /* Chrome*/
 
 /* Variables */
 
@@ -110,19 +114,12 @@ body {
     height: 100%;
 }
 
-/* Contains additional btns */
-
-.calculator-additional {
-    height: 98px;
-    width: 100%;
-}
-
 /* Contains all basic btns for calculators */
 
 .calculator-additional {
     display: flex;
     flex-direction: column;
-    height: 120px;
+    width: 100%;
 }
 
 .calculator-main {
@@ -134,7 +131,6 @@ body {
 
 .row-additional {
     display: flex;
-    height: 33%;
 }
 
 .row-main {
@@ -144,14 +140,14 @@ body {
 }
 
 .btn-additional {
-    height: 100%;
+    height: 32px;
     width: 25%;
     font-size: 20px;
     border-radius: var(--lessRounded);
 }
 
 .btn-main {
-    width: 80px;
+    width: 100%;
     font-size: 42px;
     border-radius: var(--moreRounded) var(--lessRounded) var(--moreRounded) var(--lessRounded);
     background-color: var(--lightColor);
@@ -159,7 +155,7 @@ body {
 }
 
 .wide-btn {
-    width: 168px;
+    width: 200%;
 }
 
 /* All btns */
@@ -225,7 +221,6 @@ body {
 .counting {
     display: flex;
     width: 100%;
-    overflow: hidden;
     height: 176px;
     flex-direction: column-reverse;
     text-align: right;
@@ -235,19 +230,28 @@ body {
 
 .output {
     font-size: 82px;
-}
+    right: 0;
+    white-space: nowrap;
+    overflow: auto;
+} 
 
 /* Counting input */
 
 .input {
     font-size: 32px;
+    right: 0;
+    white-space: nowrap;
     margin-right: 5px;
+    overflow: auto;
 }
+
+/* Image of btn */
 
 #moreBtnImage {
     height: 30px;
     display: flex;
     align-content: flex-end;
+    padding: 0 15px;
 }
 
 /* Menu */
@@ -321,3 +325,16 @@ body {
     font-size: 16px;
 }
 
+/* RESPONSIVE DESIGN */
+
+@media only screen and (max-width: 450px) {
+    body {
+        margin: 0;
+    }
+
+    #container {
+        border-radius: 0;
+        width: 100vh;
+        height: 100vh;
+    }
+}

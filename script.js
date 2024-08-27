@@ -1,5 +1,8 @@
 // Version
-let version = "v0.4.1-alpha"
+let version
+
+// version = "unknown version"
+version = "v0.5.0-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
@@ -81,7 +84,13 @@ function result() {
     try {
         // Filter
         count = count.replace(/%/g, "/100");
-        count = count.replace(/π/g, Math.PI);
+        count = count.replace(/π/g, "Math.PI");
+        count = count.replace(/\$/g, "Math.sin(");
+        count = count.replace(/\€/g, "Math.cos(");
+        count = count.replace(/\&/g, "Math.tan(");
+        count = count.replace(/\@/g, "cotg(");
+
+        // console.log(count)
         
         //Error checking
         if (count == "") {
@@ -92,10 +101,13 @@ function result() {
             clearAll()
             document.getElementById("input").innerHTML = ""
             
+            // Reset font size
+            resetFontSize()
+
             // Display error
             document.getElementById("output").innerHTML = "Error"
         } else {
-            console.log(count)
+            // console.log(count)
             let finalResult = Math.round(eval(count) * 100)/100    
             
             // Show on calculator display
@@ -111,6 +123,9 @@ function result() {
         // clear mistake
         clearAll()
         document.getElementById("input").innerHTML = ""
+
+        // Reset font size
+        resetFontSize()
         
         // display error
         document.getElementById("output").innerHTML = "Error"
@@ -149,9 +164,12 @@ function brackets() {
     }
 }
 
-function factorial() {
+// Contangent function
 
+function cotg(x) { 
+    return 1 / Math.tan(x); 
 }
+
 // COUNTING /////////////////////////////////////////////////////////
 
 function counting(input) {
@@ -194,37 +212,31 @@ function inputDisplay(countDisplay) {
 // Editing displayed text, for example this changing "*" to "×" (it's look more user friendly)
 function editText(edit) {
     // Filter
-    edit = edit.replace(/tan/g, "tang");
     edit = edit.replace(/Math./g, "");
     edit = edit.replace(/\*/g, "×");
     edit = edit.replace(/\//g, "÷");
     edit = edit.replace(/\./g, ",");
+    edit = edit.replace(/\€/g, "cos(");
+    edit = edit.replace(/\&/g, "tan(");
+    edit = edit.replace(/\$/g, "sin(");
+    edit = edit.replace(/\@/g, "cotg(");
     return edit
 }
 
 // FONT SIZE CHANGING /////////////////////////////////////////////////////////
 
+let fontSizeModifier = 0.9
+
 function fontSizeChanger() {
-    if (count.length <= 7) {
-        document.getElementById("output").style.fontSize = "82px"
-    } else if (count.length == 8) {
-        document.getElementById("output").style.fontSize = "70px"
-    } else if (count.length == 9) {
-        document.getElementById("output").style.fontSize = "62px"
-    } else if (count.length == 10) {
-        document.getElementById("output").style.fontSize = "56px"
-    } else if (count.length == 11) {
-        document.getElementById("output").style.fontSize = "52px"
-    } else if (count.length == 12) {
-        document.getElementById("output").style.fontSize = "47px"
-    } else if (count.length == 13) {
-        document.getElementById("output").style.fontSize = "45px"
-    } else if (count.length == 14) {
-        document.getElementById("output").style.fontSize = "42px"
-    } else {
-        console.log("if u read this, dont add more numbers, signs... pls, ty")
-        // ik weird function
-    }
+    if (count.length >= 6 && count.length <= 12) {
+        let fontSize = 82 * (1-(count.length - 6)/13)
+        document.getElementById("output").style.fontSize = fontSize + "px"
+    } 
+    else {}
+}
+
+function resetFontSize(){
+    document.getElementById("output").style.fontSize = "82px"
 }
 
 // KEY LISTENER /////////////////////////////////////////////////////////
@@ -237,14 +249,14 @@ document.addEventListener("keydown", function(event){key = event.key; keyInput()
 
 // Keys run functions
 function keyInput() {
-    // console.log(key)
+    console.log(key)
 
     if ((key >= 0 && key != " ") || key == "%") {counting(key)}
     else if(key == "/" || key == "*" || key == "-" || key == "+" || key == "," || key == ".") {counting(key); signFix()}
     else if(key == "Enter" || key == "=") {result()}
-    else if(key == "s") {counting('Math.sin(')}
-    else if(key == "c") {counting('Math.cos(')}
-    else if(key == "t") {counting('Math.tan(')}
+    else if(key == "s") {counting('$')}
+    else if(key == "c") {counting('$')}
+    else if(key == "t") {counting('&')}
     else if(key == ")") {brackets()}
     else if(key == "(") {brackets()}
     else if(key == "Delete") {clearAll()}
@@ -262,9 +274,16 @@ function delFunction(set = 1) {
     return count = count.substring(0, count.length - set), inputDisplay(count)
 }
 
-// Ignore pls, just easter egg
+// Ignore pls, just easter egg hehe
 function eE(){
     if (count == "0.0") {
-        console.log("%caaaaaaaaaaaaaaaaa, my code is f**kin' broken, I'm not dev, I'm grafic designer, why I code this? f*ck", "color: #f0f")
+        console.log("%caaaaaaaaaaaaaaaaa, my code is f**kin' broken, I'm not dev, I'm grafic designer, why I code this? f*ck... this code is horrible 😭", "color: #f0f")
     } else {}
+}
+
+// Calculatorfetch :3
+
+function calcfetch() {
+    console.log("Calcfetch")
+    console.log("Version: " + version)
 }
