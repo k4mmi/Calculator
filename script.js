@@ -2,7 +2,7 @@
 let version
 
 // version = "unknown version"
-version = "v0.5.0-alpha"
+version = "v0.5.1-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
@@ -216,9 +216,9 @@ function editText(edit) {
     edit = edit.replace(/\*/g, "×");
     edit = edit.replace(/\//g, "÷");
     edit = edit.replace(/\./g, ",");
+    edit = edit.replace(/\$/g, "sin(");
     edit = edit.replace(/\€/g, "cos(");
     edit = edit.replace(/\&/g, "tan(");
-    edit = edit.replace(/\$/g, "sin(");
     edit = edit.replace(/\@/g, "cotg(");
     return edit
 }
@@ -254,9 +254,10 @@ function keyInput() {
     if ((key >= 0 && key != " ") || key == "%") {counting(key)}
     else if(key == "/" || key == "*" || key == "-" || key == "+" || key == "," || key == ".") {counting(key); signFix()}
     else if(key == "Enter" || key == "=") {result()}
-    else if(key == "s") {counting('$')}
-    else if(key == "c") {counting('$')}
-    else if(key == "t") {counting('&')}
+    else if(key == "s") {counting('$'), bracketStatus = 'opened'}
+    else if(key == "c") {counting('€'), bracketStatus = 'opened'}
+    else if(key == "t") {counting('&'), bracketStatus = 'opened'}
+    else if(key == "g") {counting('@'), bracketStatus = 'opened'}
     else if(key == ")") {brackets()}
     else if(key == "(") {brackets()}
     else if(key == "Delete") {clearAll()}

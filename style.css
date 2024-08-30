@@ -54,6 +54,20 @@
     opacity: 0.3;
 }
 
+/* Info */
+
+#info {
+    pointer-events: none; 
+    z-index: 999;
+    position: fixed;
+    opacity: 0.4;
+    margin: 10px;
+    font-size: 14px;
+    top: 0;
+    left: 0;
+    color: #8e8e8e;
+}
+
 /* Body */
 
 body { 
@@ -226,6 +240,10 @@ body {
     text-align: right;
 }
 
+.counting * {
+    transition: 200ms;
+}
+
 /* Counting output*/
 
 .output {
@@ -336,5 +354,31 @@ body {
         border-radius: 0;
         width: 100vh;
         height: 100vh;
+    }
+
+    .btn-main {
+        font-size: 13vi;
+    }
+
+    .btn-main img {
+        width: 10vi;
+    }
+
+    .btn-additional {
+        font-size: 6vi;
+        height: 10vi;
+    }
+
+    .row-main {
+        gap: 2vi;
+    }
+
+    .calculator-main {
+        gap: 2vi;
+    }
+
+    #info {
+        margin: 0.5vi;
+        font-size: 8px;
     }
 }
