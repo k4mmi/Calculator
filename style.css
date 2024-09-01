@@ -23,7 +23,7 @@
     --darkColor: #162C1C;
     --neutralColor: #1F3C27;
     --lightColor: #224A2D;
-    --whiteColor: #fff;
+    --whiteColor: #EAF5F5;
     
     /* Rounded corners */
     --moreRounded: 33px;
@@ -338,9 +338,14 @@ body {
     font-size: 16px;
 }
 
-.p-window {
+.p-window-m {
     margin: 10px 25px;
     font-size: 16px;
+}
+
+.p-window-s {
+    margin: 10px 25px;
+    font-size: 12px;
 }
 
 /* RESPONSIVE DESIGN */

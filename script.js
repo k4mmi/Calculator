@@ -2,7 +2,7 @@
 let version
 
 // version = "unknown version"
-version = "v0.5.1-alpha"
+version = "v0.5.2-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
@@ -113,10 +113,9 @@ function result() {
             // Show on calculator display
             document.getElementById("output").innerHTML = editText(String(finalResult))
             document.getElementById("input").innerHTML = editText(count)
-            document.getElementById("output").style.fontSize = "62px"
             
             // Final result to 
-            return count = String(finalResult)
+            return count = String(finalResult), fontSizeChanger(count), console.log(count.length)
         }
     } catch {
         
@@ -139,7 +138,7 @@ function clearAll() {
     document.getElementById("output").innerHTML = ""  
     document.getElementById("input").innerHTML = ""
     bracketStatus = null
-    return count, fontSizeChanger()
+    return count, fontSizeChanger(count)
 }
 
 // Just delete
@@ -149,7 +148,7 @@ function del() {
     document.getElementById("input").innerHTML = editText("")
 
     // Just delete
-    return count = count.substring(0, count.length - 1), fontSizeChanger(), inputDisplay(count)
+    return count = count.substring(0, count.length - 1), fontSizeChanger(count), inputDisplay(count)
 }
 
 // Choose correct brackets
@@ -172,14 +171,12 @@ function cotg(x) {
 
 // COUNTING /////////////////////////////////////////////////////////
 
+// Counting function, add signs and numbers :)
+
 function counting(input) {
-    input = String(input)
-    
-    // Filter
-    // input = input.replace(/piReplace/g, "3.14")
     
     // Add symbol, 
-    return count = (count + String(input)), inputDisplay(count),fontSizeChanger(), document.getElementById("input").innerHTML = "", eE() 
+    return count = (count + String(input)), inputDisplay(count), document.getElementById("input").innerHTML = "", eE() 
 }
 
 // Fix double signs. If user try new sign, a last one will be replaced the new one
@@ -220,19 +217,27 @@ function editText(edit) {
     edit = edit.replace(/\€/g, "cos(");
     edit = edit.replace(/\&/g, "tan(");
     edit = edit.replace(/\@/g, "cotg(");
+
+    // Change size of numbers...
+
+    fontSizeChanger(edit)
+
     return edit
 }
 
 // FONT SIZE CHANGING /////////////////////////////////////////////////////////
 
-let fontSizeModifier = 0.9
+function fontSizeChanger(input) {
+    input = input.length
 
-function fontSizeChanger() {
-    if (count.length >= 6 && count.length <= 12) {
-        let fontSize = 82 * (1-(count.length - 6)/13)
+    if (input >= 6 && input <= 12) {
+        let fontSize = 82 * (1-(input - 6)/13)
         document.getElementById("output").style.fontSize = fontSize + "px"
+        // console.log(input)
     } 
-    else {}
+    else {
+        document.getElementById("output").style.fontSize = "82px"
+    }
 }
 
 function resetFontSize(){
@@ -249,8 +254,9 @@ document.addEventListener("keydown", function(event){key = event.key; keyInput()
 
 // Keys run functions
 function keyInput() {
-    console.log(key)
+    // console.log(key)
 
+    // Key binds
     if ((key >= 0 && key != " ") || key == "%") {counting(key)}
     else if(key == "/" || key == "*" || key == "-" || key == "+" || key == "," || key == ".") {counting(key); signFix()}
     else if(key == "Enter" || key == "=") {result()}
@@ -265,8 +271,16 @@ function keyInput() {
     else if(key == "Escape"){closeWindow()}
     else if(key == " ") {moreBtn()}
     else if(key == "p") {counting('π')}
-    else {}
 }
+
+// Disable browers find function by pressing "/"
+
+document.addEventListener("keydown",function (keyFind) {
+    // console.log(keyFind.keyCode)
+    if (keyFind.keyCode === 111 || (keyFind.shiftKey && keyFind.keyCode === 191)) { 
+        keyFind.preventDefault();
+    }
+})
 
 // OTHER /////////////////////////////////////////////////////////
 
