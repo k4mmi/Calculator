@@ -2,7 +2,7 @@
 let version
 
 // version = "unknown version"
-version = "v0.5.2-alpha"
+version = "v0.5.3-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
@@ -115,7 +115,7 @@ function result() {
             document.getElementById("input").innerHTML = editText(count)
             
             // Final result to 
-            return count = String(finalResult), fontSizeChanger(count), console.log(count.length)
+            return count = String(finalResult), fontSizeChanger(count) //, console.log(count.length)
         }
     } catch {
         
@@ -146,6 +146,13 @@ function clearAll() {
 function del() {
     // Hide user's input from display (id="input" in index.html)
     document.getElementById("input").innerHTML = editText("")
+
+    // Auto fix brackets
+    if (count.slice(-1) == ")") {
+        bracketStatus = "opened"
+    } else if (count.slice(-1) == "(") {
+        bracketStatus = "closed"
+    }
 
     // Just delete
     return count = count.substring(0, count.length - 1), fontSizeChanger(count), inputDisplay(count)
@@ -234,7 +241,10 @@ function fontSizeChanger(input) {
         let fontSize = 82 * (1-(input - 6)/13)
         document.getElementById("output").style.fontSize = fontSize + "px"
         // console.log(input)
-    } 
+    } else if (input >= 13) {
+        let fontSize = 82 * (1-7/13)
+        document.getElementById("output").style.fontSize = fontSize + "px"
+    }
     else {
         document.getElementById("output").style.fontSize = "82px"
     }
