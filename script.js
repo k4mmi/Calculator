@@ -336,13 +336,13 @@ let powerLoopStatus = false
 function powerStatusActive() {
 
     // powerLoopStatus allowing continue
-    return powerLoopStatus = true, console.log("power loop status ACTIVATED")
+    return powerLoopStatus = true
 }
 
 function powerStatusDective() {
 
     // powerLoopStatus allowing continue, this will deactivate the power status
-    return powerLoopStatus = false, console.log("power loop status DEACTIVATED")
+    return powerLoopStatus = false
 }
 
 // Power function
