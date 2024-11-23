@@ -1,8 +1,8 @@
 // Version
 let version
 
-version = "unknown version"
-// version = "v0.5.4-alpha"
+// version = "unknown version"
+version = "v0.6.0-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
