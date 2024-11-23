@@ -1,116 +1,109 @@
 <!DOCTYPE html>
 <html lang="cz-cs">
-<head>
-    <!--^w^-->
-    <meta charset="UTF-8">
-    <link rel="icon" href="images/favicon/favicon.svg">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Kalkulačka</title>
-</head>
-<body>
-    <div id="info"></div>
-    <!-- Calculator -->
-    <div id="container">
-        <div id="window" style="display: none">
-            <div id="settings" style="display: none">
-                <div class="h1-window">Nastavení</div>
-                <div class="p-window-m">Zatím kalkulačka nemá žádné nastavení.</div>
+    <head>
+        <!-- :3 -->
+        <meta charset="UTF-8">
+        <link rel="icon" href="images/favicon/favicon.svg">
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Kalkulačka</title>
+    </head>
+    <body>
+        <div id="info"></div>
+        <!-- Calculator -->
+        <div id="container">
+            <div id="window" style="display: none">
+                <div id="settings" style="display: none">
+                    <div class="h1-window">Nastavení</div>
+                    <div class="p-window-m">Zatím kalkulačka nemá žádné nastavení.</div>
+                </div>
+                <div id="about" style="display: none">
+                    <div class="h1-window">O aplikaci</div>
+                    <div id="about-version" class="p-window-m"></div>
+                    <div class="p-window-s">Aktuální verze webové aplikace je stále ve fázi vývoje. Proto aplikace nemusí fungovat správně.</div>
+                    <br>
+                    <div class="p-window-m">Odkazy: <a href="https://github.com/k4mmi/Calculator" target="_blank">Zdrojový kód (GitHub)</a></div>
+                </div>
+                <button class="invis-btn" onclick="closeWindow()"></button> 
+                <div class="invis-btn-text">Zpět</div>
             </div>
-            <div id="about" style="display: none">
-                <div class="h1-window">O aplikaci</div>
-                <div id="about-version" class="p-window-m"></div>
-                <div class="p-window-s">Aktuální verze webové aplikace je stále ve fázi vývoje. Proto aplikace nemusí fungovat správně.</div>
-                <br>
-                <div class="p-window-m">Odkazy: <a href="https://github.com/k4mmi/Calculator" target="_blank">Zdrojový kód (GitHub)</a></div>
+            <!-- Display of calculator -->
+            <div id="menu" style="display: none">
+                <button class="menu-btn btn" onclick="menu(), bluredWindow(), settings()"><img src="images/icons/settings.svg">Nastavení</button>
+                <button class="menu-btn btn" onclick="menu(), bluredWindow(), about()"><img src="images/icons/info.svg">O aplikaci</button>
             </div>
-            <button class="invis-btn" onclick="closeWindow()"></button> 
-            <div class="invis-btn-text">Zpět</div>
-        </div>
-        <!-- Display of calculator -->
-        <div id="menu" style="display: none">
-            <button class="menu-btn btn" onclick="menu(), bluredWindow(), settings()"><img src="images/icons/settings.svg">Nastavení</button>
-            <button class="menu-btn btn" onclick="menu(), bluredWindow(), about()"><img src="images/icons/info.svg">O aplikaci</button>
-        </div>
-        <div class="display">
-            <div class="top-menu">
-                <button class="btn-circle btn" onclick="menu()">
-                    <img src="images/icons/more_vert.svg" height="32px">
-                </button>
-                <!-- <button class="btn-circle btn">
-                    <img src="images/icons/history.svg" alt="History" height="32px">
-                </button> -->
+            <div class="display">
+                <div class="top-menu">
+                    <button class="btn-circle btn" onclick="menu()">
+                        <img src="images/icons/more_vert.svg" height="32px">
+                    </button>
+                    <!-- <button class="btn-circle btn">
+                        <img src="images/icons/history.svg" alt="History" height="32px">
+                    </button> -->
+                </div>
+                <div id="counting" class="counting">
+                    <div id="output" class="output"></div>
+                    <div id="input" class="input"></div>
+                </div>
+                <div id="moreBtn" class="more-btn">
+                    <button class="btn" onclick="moreBtn()"><img id="moreBtnImage" src="images/icons/more-closed.svg" alt="More" width="42px"></button>
+                </div>
             </div>
-            <div id="counting" class="counting">
-                <div id="output" class="output"></div>
-                <div id="input" class="input"></div>
-            </div>
-            <div id="moreBtn" class="more-btn">
-                <button class="btn" onclick="moreBtn()"><img id="moreBtnImage" src="images/icons/more-closed.svg" alt="More" width="42px"></button>
-            </div>
-        </div>
-        <!-- All btns -->
-        <div class="calculator-btns">
-            <!-- Additional btns -->
-            <div id="calculatorAdditional" class="calculator-additional" style="display: none">
-                <div class="row-additional">
-                    <button id="sin" class="btn btn-additional" onclick="counting('$'), bracketStatus = 'opened'">sin</button>
-                    <button id="cos" class="btn btn-additional" onclick="counting('€'), bracketStatus = 'opened'">cos</button>
-                    <button id="tang" class="btn btn-additional" onclick="counting('&'), bracketStatus = 'opened'">tang</button>
-                    <button id="" class="btn btn-additional" onclick="counting('@'), bracketStatus = 'opened'">cotg</button>
+            <!-- All btns -->
+            <div class="calculator-btns">
+                <!-- Additional btns -->
+                <div id="calculatorAdditional" class="calculator-additional" style="display: none">
+                    <div class="row-additional">
+                        <button id="sin" class="btn btn-additional" onclick="counting('$'), bracketStatus = 'opened'">sin</button>
+                        <button id="cos" class="btn btn-additional" onclick="counting('€'), bracketStatus = 'opened'">cos</button>
+                        <button id="tang" class="btn btn-additional" onclick="counting('&'), bracketStatus = 'opened'">tang</button>
+                        <button id="cotg" class="btn btn-additional" onclick="counting('@'), bracketStatus = 'opened'">cotg</button>
+                    </div>
+                    <div class="row-additional">
+                        <button id="power" class="btn btn-additional" onclick="powerRootStatusActive(), counting(';'), powerStatusActive(), bracketStatus = 'opened'">^</button>
+                        <button id="squareroot" class="btn btn-additional" onclick="powerRootStatusActive(), counting('#')">√</button>
+                        <button id="percentage" class="btn btn-additional" onclick="counting('%')">%</button>
+                        <button id="pi" class="btn btn-additional" onclick="counting('π')">π</button>
+                    </div>
                 </div>
-                <div class="row-additional">
-                    <button id="" class="btn btn-additional incomplete" onclick="counting('Math.pow('), bracketStatus = 'opened'">^</button>
-                    <button id="" class="btn btn-additional incomplete" onclick="counting('Math.sqrt('), bracketStatus = 'opened'">√</button>
-                    <button id="percentage" class="btn btn-additional" onclick="counting('%')">%</button>
-                    <button id="pi" class="btn btn-additional" onclick="counting('π')">π</button>
+                <!-- Main btns -->
+                <div class="calculator-main">
+                    <!-- Rows with btns -->
+                    <div class="row-main">
+                        <button id="acBtn" class="btn btn-main" onclick="clearAll()">AC</button>
+                        <button id="bracketsBtn" class="btn btn-main" onclick="brackets()">( )</button>
+                        <button id="deleteBtn" class="btn btn-main" onclick="del()"><img src="images/icons/delete.svg" alt="DEL" width="36px"></button>
+                        <button id="divideBtn" class="btn btn-main" onclick="sign(), counting('/'), signFix()">÷</button>
+                    </div>
+                    <div class="row-main">
+                        <button id="sevenBtn" class="btn btn-main" onclick="counting(7)">7</button>
+                        <button id="eightBtn" class="btn btn-main" onclick="counting(8)">8</button>
+                        <button id="nineBtn" class="btn btn-main" onclick="counting(9)">9</button>
+                        <button id="multiplyBtn" class="btn btn-main" onclick="sign(), counting('*'), signFix()">×</button>
+                    </div>
+                    <div class="row-main">
+                        <button id="fourBtn" class="btn btn-main" onclick="counting(4)">4</button>
+                        <button id="fiveBtn" class="btn btn-main" onclick="counting(5)">5</button>
+                        <button id="sixBtn" class="btn btn-main" onclick="counting(6)">6</button>
+                        <button id="subtractBtn" class="btn btn-main" onclick="sign(), counting('-'), signFix()">–</button>
+                    </div>
+                    <div class="row-main">
+                        <button id="oneBtn" class="btn btn-main" onclick="counting(1)">1</button>
+                        <button id="twoBtn" class="btn btn-main" onclick="counting(2)">2</button>
+                        <button id="threeBtn" class="btn btn-main" onclick="counting(3)">3</button>
+                        <button id="plusBtn" class="btn btn-main" onclick="sign(), counting('+'), signFix()">+</button>
+                    </div>
+                    <div class="row-main">
+                        <!-- Wide btn -->
+                        <button id="zeroBtn" class="btn btn-main wide-btn" onclick="counting(0)">0</button>
+                        <button id="commaBtn" class="btn btn-main" onclick="counting('.'), signFix()">,</button>
+                        <button id="resultBtn" class="btn btn-main" onclick="result()">=</button>
+                    </div>
+                    
                 </div>
-                <!-- <div class="row-additional">
-                    <button id="" class="btn btn-additional incomplete" onclick="">°</button>
-                    <button id="" class="btn btn-additional incomplete" onclick="">!</button>
-                    <button id="" class="btn btn-additional incomplete" onclick="">RAD</button>
-                    <button id="" class="btn btn-additional incomplete" onclick="counting('log 🪵 hehe')">log</button>
-                </div> -->
-            </div>
-            <!-- Main btns -->
-            <div class="calculator-main">
-                <!-- Rows with btns -->
-                <div class="row-main">
-                    <button id="acBtn" class="btn btn-main" onclick="clearAll()">AC</button>
-                    <button id="bracketsBtn" class="btn btn-main" onclick="brackets()">( )</button>
-                    <button id="deleteBtn" class="btn btn-main" onclick="del()"><img src="images/icons/delete.svg" alt="DEL" width="36px"></button>
-                    <button id="divideBtn" class="btn btn-main" onclick="counting('/'), signFix()">÷</button>
-                </div>
-                <div class="row-main">
-                    <button id="sevenBtn" class="btn btn-main" onclick="counting(7)">7</button>
-                    <button id="eightBtn" class="btn btn-main" onclick="counting(8)">8</button>
-                    <button id="nineBtn" class="btn btn-main" onclick="counting(9)">9</button>
-                    <button id="multiplyBtn" class="btn btn-main" onclick="counting('*'), signFix()">×</button>
-                </div>
-                <div class="row-main">
-                    <button id="fourBtn" class="btn btn-main" onclick="counting(4)">4</button>
-                    <button id="fiveBtn" class="btn btn-main" onclick="counting(5)">5</button>
-                    <button id="sixBtn" class="btn btn-main" onclick="counting(6)">6</button>
-                    <button id="subtractBtn" class="btn btn-main" onclick="counting('-'), signFix()">–</button>
-                </div>
-                <div class="row-main">
-                    <button id="oneBtn" class="btn btn-main" onclick="counting(1)">1</button>
-                    <button id="twoBtn" class="btn btn-main" onclick="counting(2)">2</button>
-                    <button id="threeBtn" class="btn btn-main" onclick="counting(3)">3</button>
-                    <button id="plusBtn" class="btn btn-main" onclick="counting('+'), signFix()">+</button>
-                </div>
-                <div class="row-main">
-                    <!-- Wide btn -->
-                    <button id="zeroBtn" class="btn btn-main wide-btn" onclick="counting(0)">0</button>
-                    <button id="commaBtn" class="btn btn-main" onclick="counting('.'), signFix()">,</button>
-                    <button id="resultBtn" class="btn btn-main" onclick="result()">=</button>
-                </div>
-                
             </div>
         </div>
-    </div>
-
-    <!-- Scripts -->
-     <script src="script.js"></script>
+        <!-- Scripts -->
+        <script src="script.js"></script>
 </body>
 </html>
