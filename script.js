@@ -2,7 +2,7 @@
 let version
 
 // version = "unknown version"
-version = "v0.6.1-alpha"
+version = "v0.6.2-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
@@ -193,7 +193,7 @@ function del() {
     let loopCount = 1
 
     if (count.slice(-1) == ";") {
-        for (let i = 0; count.length >= i; ++i){
+        for (let i = 0; count.length >= i; ++i) {
 
             let x = 2
             let firstCountTrim = count.slice(-1*(i + 1))
@@ -233,50 +233,6 @@ function del() {
     return count = count.substring(0, count.length - 1), fontSizeChanger(count), inputDisplay(count),console.log(count)
 }
 
-function testNum() {
-    counting("7739+¶579;3")
-}
-
-function test() {
-
-    let loopCount = 1
-
-    if (count.slice(-1) == ";") {
-        for (let i = 0; count.length >= i; ++i){
-            console.log("i'm workin' :3")
-
-            console.log("fLC" + loopCount)
-
-            let x = 2
-            let firstCountTrim = count.slice(-1*(i + 1))
-    
-            // Fix for first interval
-            if (i > 0) {
-                x = 1
-            }
-            
-            let secondCountTrim = firstCountTrim.slice(0, -firstCountTrim.length + x)
-    
-            // Just set second trim to new variable
-            let countChacker = secondCountTrim
-
-            console.log(countChacker)
-            if (countChacker == "¶") {
-
-                console.log("I found ¶")
-                let countTempPower = count.slice(-loopCount + 1)
-                count = count.slice(0, -loopCount)
-                return count = count + countTempPower 
-            } else {
-                console.log("else")
-                loopCount = ++loopCount
-            }
-            console.log("LC " + loopCount)
-            
-        }
-    }
-}
-
 // Choose correct brackets
 
 let bracketStatus = null
@@ -310,7 +266,7 @@ function powerRootStatusDeactive() {
 // Chack where is new number/sign
 function powerSquareRootChacker(input, inputVisibility) {
     if (powerRootStatus === true) {
-        if (typeof newInputSymbol != "number" && newInputSymbol !== "#" && newInputSymbol !== ";") {
+        if (typeof newInputSymbol != "number" && newInputSymbol != "." && newInputSymbol !== "#" && newInputSymbol !== ";") {
             
             // Deactivate root status
             powerRootStatusDeactive()
@@ -379,7 +335,7 @@ function power() {
         // console.log("count.length "+count.length)
         // console.log("loopCount.length "+loopCount.length)
 
-        if ((Number(countChacker) >= 0 || countChacker == ";") && count.length >= loopCountInstant) {
+        if ((Number(countChacker) >= 0 || countChacker == ";" || countChacker == ".") && count.length >= loopCountInstant) {
 
             // If the symbol is still num
             loopCount = ++loopCount
@@ -399,7 +355,7 @@ function power() {
             let countTempPower = count.slice(-loopCount)
             count = count.slice(0, -loopCount)
             // console.groupEnd()
-            return count = count + "¶" + countTempPower, console.log("Final: " + count)
+            return count = count + "¶" + countTempPower
         }
     }
 }
@@ -539,7 +495,7 @@ document.addEventListener("keydown", function(event){key = event.key; keyInput()
 
 // Keys run functions
 function keyInput() {
-    console.log(key)
+    // console.log(key)
 
     // Key binds
     if ((key >= 0 && key != " ") || key == "%") {counting(Number(key))}
