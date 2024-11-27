@@ -2,7 +2,7 @@
 let version
 
 // version = "unknown version"
-version = "v0.6.0-alpha"
+version = "v0.6.1-alpha"
 
 // Version display in about
 document.getElementById("about-version").innerHTML = "Verze aplikace: " + version
@@ -542,7 +542,7 @@ function keyInput() {
     console.log(key)
 
     // Key binds
-    if ((key >= 0 && key != " ") || key == "%") {counting(key)}
+    if ((key >= 0 && key != " ") || key == "%") {counting(Number(key))}
     else if(key == "/" || key == "*" || key == "-" || key == "+" || key == "," || key == ".") {counting(key); signFix()}
     else if(key == "Enter" || key == "=") {result()}
     else if(key == "s") {counting('$'), bracketStatus = 'opened'}
